@@ -1,6 +1,12 @@
-import Head from 'next/head'
+import Head from 'next/head';
+import TodoItem from '../components/TodoItem';
 
 export default function Home() {
+
+  function handleClick(){};
+  function handleRemove(){};
+
+
   return (
     <div className="container">
       <Head>
@@ -16,6 +22,9 @@ export default function Home() {
         <p className="description">
           Here's what you need to do...
         </p>
+        <ul>
+          <TodoItem isChecked label={'make a todo list'} handleClick={handleClick} handleRemove={handleRemove}  />
+        </ul>
       </main>
 
       <footer>
@@ -60,6 +69,12 @@ export default function Home() {
           align-items: center;
         }
 
+        ul, ol {
+          list-style-type: none;
+          margin-left: -50%;
+          cursor: pointer;
+        }
+
         a {
           color: inherit;
           text-decoration: none;
@@ -85,50 +100,6 @@ export default function Home() {
         .title,
         .description {
           text-align: center;
-        }
-
-        .description {
-          line-height: 1.5;
-          font-size: 1.5rem;
-        }
-
-        code {
-          background: #fafafa;
-          border-radius: 5px;
-          padding: 0.75rem;
-          font-size: 1.1rem;
-          font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-            DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
-        }
-
-        .card {
-          margin: 1rem;
-          flex-basis: 45%;
-          padding: 1.5rem;
-          text-align: left;
-          color: inherit;
-          text-decoration: none;
-          border: 1px solid #eaeaea;
-          border-radius: 10px;
-          transition: color 0.15s ease, border-color 0.15s ease;
-        }
-
-        .card:hover,
-        .card:focus,
-        .card:active {
-          color: #0070f3;
-          border-color: #0070f3;
-        }
-
-        .card h3 {
-          margin: 0 0 1rem 0;
-          font-size: 1.5rem;
-        }
-
-        .card p {
-          margin: 0;
-          font-size: 1.25rem;
-          line-height: 1.5;
         }
 
         @media (max-width: 600px) {
