@@ -5,8 +5,6 @@ import Uncheckbox from '../svg/uncheckbox';
 import React, {useContext} from 'react';
 import {TodolistContext} from '../context/todolistContext';
 
-
-
 const TodoItemRow = styled.li`
   display: block;
   position: relative;
@@ -21,11 +19,8 @@ const TodoItemRow = styled.li`
       opacity: 0.3;
     }
   }
-  &:focus {
-    outline: none;
-    outline-width: 0;
-  }
 `;
+
 const SvgBox = styled.div`
   display: inline-block;
   width: 30px;
