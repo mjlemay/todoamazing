@@ -1,5 +1,4 @@
 export const todolistReducer = (state, action) => {
-    console.log('todo state', state);
   switch (action.type) {
     case 'ADD_TODO':
         console.log('add todo');
@@ -15,10 +14,13 @@ export const todolistReducer = (state, action) => {
                     ...todo,
                     ...action.todo
                 }
+            } else {
+                return todo
             }
         })
     case 'REMOVE_TODO':
-        return state.filter(todo => todo.id !== action.id);
+
+        return state.filter(todo => todo.id !== action.todo.id);
     default:
         return state;
   }

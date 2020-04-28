@@ -1,13 +1,16 @@
-import PropTypes from 'react';
 import styled from'styled-components';
-import Checkbox from '../svg/uncheckbox';
+import Checkbox from '../svg/checkbox';
 import Close from '../svg/close';
 import Uncheckbox from '../svg/uncheckbox';
+import React, {useContext} from 'react';
+import {TodolistContext} from '../context/todolistContext';
+
 
 
 const TodoItemRow = styled.li`
   display: block;
   position: relative;
+  cursor: pointer;
 
   .button {
     opacity:0;
@@ -17,6 +20,10 @@ const TodoItemRow = styled.li`
     .button {
       opacity: 0.3;
     }
+  }
+  &:focus {
+    outline: none;
+    outline-width: 0;
   }
 `;
 const SvgBox = styled.div`
@@ -51,26 +58,50 @@ const TodoLabel = styled.div`
 `;
 
 const TodoItem = ({
-    key,
+    id,
     label,
-    isChecked
-  }) => (
-    <TodoItemRow
-      key={key}
-    >
-      <SvgBox
+    completed
+  }) => {
+    // if there is a date stamp set boolean value for now
+    const isChecked = completed ? true : false;
+    const {dispatch} = useContext(TodolistContext);
+
+    //our checkbox handker
+    const handleCheck = e => {
+      e.preventDefault();
+      const completed = isChecked ? null : new Date().toISOString();
+      console.log('id', id);
+      dispatch({type: 'UPDATE_TODO', todo: {id, completed}});
+    }
+
+    //our remove handler
+    const handleRemove = e => {
+      e.preventDefault();
+      dispatch({type: 'REMOVE_TODO', todo: {id}});
+    }
+
+    return (
+      <TodoItemRow
+        className={id}
       >
-        {isChecked ? <Checkbox /> : <Uncheckbox />}
-      </SvgBox>
-      <TodoLabel>
-        {label}
-      </TodoLabel>
-      <SvgBox
-        className={'button'}
-      >
-        <Close />
-      </SvgBox>
-    </TodoItemRow>
-  );
+        <SvgBox
+          onClick={handleCheck}
+        >
+          {isChecked ? <Checkbox /> : <Uncheckbox />}
+        </SvgBox>
+        <TodoLabel 
+          onClick={handleCheck}
+        >
+          {label}
+        </TodoLabel>
+        <SvgBox
+          className={'button'}
+          onClick={handleRemove}
+        >
+          <Close />
+        </SvgBox>
+      </TodoItemRow>
+    )
+    };
   
   export default TodoItem;

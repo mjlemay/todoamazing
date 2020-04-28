@@ -10,9 +10,11 @@ const TodoList = () => {
         <ul>
             {todos && todos.map( todo => {
                    return (
-                    <TodoItem key={todo.id}
+                    todo && <TodoItem
+                        key={todo.id}
+                        id={todo.id}
                         label={todo.label}
-                        check
+                        completed={todo.completed}
                     />
                    )
                 }
