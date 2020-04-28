@@ -1,11 +1,9 @@
 import Head from 'next/head';
-import TodoItem from '../components/TodoItem';
+import TodolistContextProvider from '../context/todolistContext';
+import TodoList from '../components/TodoList';
+import TodoForm from '../components/TodoForm';
 
 export default function Home() {
-
-  function handleClick(){};
-  function handleRemove(){};
-
 
   return (
     <div className="container">
@@ -22,9 +20,10 @@ export default function Home() {
         <p className="description">
           Here's what you need to do...
         </p>
-        <ul>
-          <TodoItem isChecked label={'make a todo list'} handleClick={handleClick} handleRemove={handleRemove}  />
-        </ul>
+        <TodolistContextProvider>
+          <TodoList />
+          <TodoForm />
+        </TodolistContextProvider>
       </main>
 
       <footer>
