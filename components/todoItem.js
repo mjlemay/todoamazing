@@ -53,8 +53,10 @@ const StampBox = styled.div`
   position: absolute;
   top: 15vh;
   left: calc(50% - 10vh);
+  transition: all 0.5s ease;
 
   svg {
+    transition: all 0.5s ease;
     fill: #e73d00;
     min-height: 20vh;
     min-width: 20vh;

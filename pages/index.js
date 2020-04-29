@@ -48,10 +48,11 @@ export default function Home() {
         footer {
           width: 100%;
           height: 40px;
-          border-top: 1px solid #eaeaea;
           display: flex;
           justify-content: center;
           align-items: center;
+          width: 100vw;
+          background-color: rgba(255, 255, 255, 0.25);
         }
 
         footer img {
