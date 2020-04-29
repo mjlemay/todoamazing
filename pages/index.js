@@ -1,7 +1,9 @@
 import Head from 'next/head';
 import TodolistContextProvider from '../context/todolistContext';
+import ThemeContextProvider from '../context/todolistContext';
 import TodoList from '../components/TodoList';
 import TodoForm from '../components/TodoForm';
+import Header from '../components/Header';
 
 export default function Home() {
 
@@ -11,25 +13,19 @@ export default function Home() {
         <title>TODOAMAZING</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <ThemeContextProvider>
+        <Header />
+        <main>
+          <TodolistContextProvider>
+            <TodoList />
+            <TodoForm />
+          </TodolistContextProvider>
+        </main>
 
-      <main>
-        <h1 className="title">
-          TODOAMAZING
-        </h1>
-
-        <p className="description">
-          Here's what you need to do...
-        </p>
-        <TodolistContextProvider>
-          <TodoList />
-          <TodoForm />
-        </TodolistContextProvider>
-      </main>
-
-      <footer>
-        <small>You got this buddy! 😃</small>
-      </footer>
-
+        <footer>
+          <small>You got this buddy! 😃</small>
+        </footer>
+      </ThemeContextProvider>
       <style jsx>{`
         .container {
           min-height: 100vh;
@@ -110,13 +106,24 @@ export default function Home() {
       `}</style>
 
       <style jsx global>{`
+        @font-face {
+          font-family: 'Quicksand';
+          font-style: normal;
+          src: url('/fonts/Quicksand-Regular.ttf')
+        }
+        @font-face {
+          font-family: 'Quicksand-Bold';
+          font-style: normal;
+          src: url('/fonts/Quicksand-Bold.ttf')
+        }
+
         html,
         body {
           padding: 0;
           margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+          font-family: Quicksand, Fira Sans, Droid Sans, Helvetica Neue,
             sans-serif;
+          background-color: #d2e7ff;
         }
 
         * {

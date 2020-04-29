@@ -7,7 +7,7 @@ const TodoList = () => {
     const {todos} = useContext(TodolistContext);
 
     return(
-        <ul>
+        <ul suppressHydrationWarning={true}>
             {todos && todos.map( todo => {
                    return (
                     todo && <TodoItem

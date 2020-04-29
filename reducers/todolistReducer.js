@@ -1,7 +1,6 @@
 export const todolistReducer = (state, action) => {
   switch (action.type) {
     case 'ADD_TODO':
-        console.log('add todo');
         return [...state, {
             label: action.todo.label, 
             stamp: action.todo.stamp, 
@@ -19,7 +18,6 @@ export const todolistReducer = (state, action) => {
             }
         })
     case 'REMOVE_TODO':
-
         return state.filter(todo => todo.id !== action.todo.id);
     default:
         return state;
